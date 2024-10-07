@@ -6,6 +6,7 @@ import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,9 +20,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,9 +38,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            var displayValue by remember { mutableStateOf("0") }
+
             CalculatorTheme() {
                 Column(Modifier.systemBarsPadding().fillMaxSize().padding(15.dp), verticalArrangement = Arrangement.Bottom) {
-                    CalculatorDisplay()
+                    CalculatorDisplay(text = displayValue)
                     Spacer(Modifier.height(15.dp))
                     CalculatorKeyboard()
                 }
@@ -48,10 +52,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CalculatorDisplay() {
+fun CalculatorDisplay(text: String) {
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
         Text(
-            text = "1",
+            text = text,
             fontSize = 60.sp
         )
     }
@@ -62,120 +66,134 @@ fun CalculatorKeyboard() {
     Column(Modifier.fillMaxWidth()) {
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("MRC", {})
+                CalculatorButton("MRC", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("M-", {})
+                CalculatorButton("M-", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("M+", {})
+                CalculatorButton("M+", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("C", {})
+                CalculatorButton("C", "tertiary", {})
             }
         }
         Spacer(Modifier.height(5.dp))
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("√", {})
+                CalculatorButton("√", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("%", {})
+                CalculatorButton("%", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("+/-", {})
+                CalculatorButton("+/-", "secondary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("CE", {})
+                CalculatorButton("CE", "tertiary", {})
             }
         }
         Spacer(Modifier.height(5.dp))
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("7", {})
+                CalculatorButton("7", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("8", {})
+                CalculatorButton("8", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("9", {})
+                CalculatorButton("9", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("÷", {})
+                CalculatorButton("÷", "secondary", {})
             }
         }
         Spacer(Modifier.height(5.dp))
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("4", {})
+                CalculatorButton("4", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("5", {})
+                CalculatorButton("5", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("6", {})
+                CalculatorButton("6", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("×", {})
+                CalculatorButton("×", "secondary", {})
             }
         }
         Spacer(Modifier.height(5.dp))
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("1", {})
+                CalculatorButton("1", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("2", {})
+                CalculatorButton("2", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("3", {})
+                CalculatorButton("3", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("-", {})
+                CalculatorButton("-", "secondary", {})
             }
         }
         Spacer(Modifier.height(5.dp))
         Row(Modifier.fillMaxWidth()) {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("0", {})
+                CalculatorButton("0", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton(".", {})
+                CalculatorButton(".", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("=", {})
+                CalculatorButton("=", "primary", {})
             }
             Spacer(Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("+", {})
+                CalculatorButton("+", "secondary", {})
             }
         }
     }
 }
 
 @Composable
-fun CalculatorButton(text: String, onClick: () -> Unit) {
+fun CalculatorButton(text: String, color: String, onClick: () -> Unit) {
+    val buttonColor = when (color.lowercase()) {
+        "primary" -> Color.Gray
+        "secondary" -> Color.Black
+        "tertiary" -> Color.Red
+        else -> Color.Gray
+    }
+
     Button(
         onClick = onClick,
-        Modifier.fillMaxWidth()
-                .aspectRatio(1f)
+        colors = ButtonColors(
+            containerColor = buttonColor,
+            contentColor = Color.White,
+            disabledContainerColor = Color.Gray,
+            disabledContentColor = Color.White
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(11/10f)
     ) {
         Text(
             text = text,
