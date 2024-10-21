@@ -71,10 +71,6 @@ class CalculatorViewModel : ViewModel() {
         _display.value = memory.toString()
     }
 
-    fun onMemoryClear() {
-        memory = 0.0
-    }
-
     fun onMemoryAdd() {
         val value = _display.value?.toDoubleOrNull()
         if (value != null) {
