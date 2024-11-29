@@ -1,6 +1,7 @@
 package com.example.firstapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -19,10 +20,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.firstapp.ui.theme.FirstAppTheme
-import java.text.Normalizer.Form
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 
 class MainActivity : ComponentActivity() {
+    private lateinit var auth: FirebaseAuth
+    val db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        auth = Firebase.auth
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -30,21 +38,56 @@ class MainActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier.systemBarsPadding()
                 ) {
-                    val list = listOf("a", "b", "c")
+                    /*val list = listOf("a", "b", "c")
                     LazyColumnList(list)
-                    LazyRowList(list)
+                    LazyRowList(list)*/
+                    Login()
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    fun signUpUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication succeeded.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }
+
+    fun signInUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication succeeded.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }
 }
 
 @Composable

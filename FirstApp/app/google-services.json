@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "180779173445",
+    "project_id": "pdm-first-app",
+    "storage_bucket": "pdm-first-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180779173445:android:e0ab6fb8eaa92ffccac52c",
+        "android_client_info": {
+          "package_name": "com.example.firstapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGZDOGn765NTPs0p7V2jFile1u4Dr5tzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
