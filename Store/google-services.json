@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850329946574",
+    "project_id": "pdm-store",
+    "storage_bucket": "pdm-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850329946574:android:e9488b9fcb1c23c5e7839f",
+        "android_client_info": {
+          "package_name": "com.example.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj1hQ-aC6xTez4Dv2FmbNbOybWOP5d6OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
